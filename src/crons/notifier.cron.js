@@ -7,7 +7,7 @@ const { hydrateReply, parseMode } = require("@grammyjs/parse-mode");
 
 const schedule = require("node-schedule");
 // Create an instance of the `Bot` class and pass your bot token to it.
-const bot = new Bot("6100756300:AAGG4m50UJsUVZs7rwwlxf7EtVNnhrU8qmk"); // <-- put your bot token between the ""
+const bot = new Bot("6761717001:AAHvOaSbZuoVz6OG78iWscPXLiKQIr50Qi8"); // <-- put your bot token between the ""
 
 // Install the plugin.
 bot.use(hydrateReply);
@@ -19,9 +19,9 @@ bot.api.config.use(parseMode("MarkdownV2"));
 // grammY will call the listeners when users send messages to your bot.
 
 // Handle the /start command.
-bot.command("start", (ctx) => ctx.reply("Welcome! Up and running."));
+bot.command("start", (ctx) => ctx.reply("Welcome. Up and running."));
 // Handle other messages.
-bot.on("message", (ctx) => ctx.reply("Got another message!"));
+bot.on("message", (ctx) => ctx.reply("Got another message."));
 
 // Now that you specified how to handle messages, you can start your bot.
 // This will connect to the Telegram servers and wait for messages.
