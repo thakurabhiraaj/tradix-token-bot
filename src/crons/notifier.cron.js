@@ -70,7 +70,7 @@ const functionQueue = new FunctionQueue();
 
 const job = schedule.scheduleJob("*/3 * * * *", function () {
   connection.query(
-    `SELECT * FROM cexListings WHERE notifiedStatus = false`,
+    `SELECT * FROM cexlistings WHERE notifiedStatus = false`,
     function (err, results, fields) {
       if (err) {
         console.log("🚀 ~ file: notifier.cron.js:37 ~ err:", err);
@@ -81,7 +81,7 @@ const job = schedule.scheduleJob("*/3 * * * *", function () {
           const notificationMsg = message("cexlisting", element);
           // console.log(notificationMsg)
           connection.query(
-            `UPDATE cexListings SET notifiedStatus = ? WHERE objectId = ?;`,
+            `UPDATE cexlistings SET notifiedStatus = ? WHERE objectId = ?;`,
             [true, element.objectId],
             function async(err, results, fields) {
               if (err) {

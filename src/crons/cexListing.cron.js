@@ -25,7 +25,7 @@ let config = {
 
 const job = schedule.scheduleJob("*/2 * * * *", function () {
   connection.execute(
-    `SELECT * FROM cexListings`,
+    `SELECT * FROM cexlistings`,
     function (err, results, fields) {
       if (err) {
         console.log("🚀 ~ file: pancakeswap.cron.js:87 ~ .then ~ err:", err);
@@ -40,7 +40,7 @@ const job = schedule.scheduleJob("*/2 * * * *", function () {
             response.data.results.forEach((element) => {
               if (!objectIdArr.includes(element.objectId)) {
                 connection.query(
-                  `INSERT INTO cexListings(objectId, created_at, CodeCoinLinks, market_url, code, exchange, alert_id, CodeCoinIcon, CodeCoinName, coinIcon, name, checkCG, showStatus, createdAt, updatedAt, notifiedStatus) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                  `INSERT INTO cexlistings(objectId, created_at, CodeCoinLinks, market_url, code, exchange, alert_id, CodeCoinIcon, CodeCoinName, coinIcon, name, checkCG, showStatus, createdAt, updatedAt, notifiedStatus) VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                   [
                     element.objectId,
                     moment(element.created_at.iso).format(
@@ -82,6 +82,5 @@ const job = schedule.scheduleJob("*/2 * * * *", function () {
       }
     }
   );
-
 });
 module.exports = job;
