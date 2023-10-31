@@ -17,20 +17,22 @@ let data = JSON.stringify({
 let config = {
   method: "post",
   maxBodyLength: Infinity,
-  url: "https://api.thegraph.com/subgraphs/name/ianlapham/uniswapv2",
+  url: "https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v2-dev",
   headers: {
     "sec-ch-ua":
-      '"Chromium";v="112", "Google Chrome";v="112", "Not:A-Brand";v="99"',
+      '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
     accept: "*/*",
     "content-type": "application/json",
     "sec-ch-ua-mobile": "?0",
     "User-Agent":
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36",
     "sec-ch-ua-platform": '"Windows"',
+    host: "api.thegraph.com",
+    Cookie:
+      "__cf_bm=vkyyrFXnkBDMopaRr4P4so7_42zSHX9rtdH5aiN_vhE-1698755367-0-Afm4WkEYfDah1X9NyxrKqJvcj5N/0Ty+RG1oLsva/041lS7/LY8YzNELLindoyxOIn68mCPR8QEaYtH4kEn77Dc=",
   },
   data: data,
 };
-
 
 const job = schedule.scheduleJob("*/1 * * * *", function () {
   connection.execute(
@@ -46,6 +48,7 @@ const job = schedule.scheduleJob("*/1 * * * *", function () {
         axios
           .request(config)
           .then((response) => {
+            // console.log(response.data.data.pairs[0]);
             const symbolsToExclude = [
               "WETH",
               "PSYOP",
@@ -66,7 +69,7 @@ const job = schedule.scheduleJob("*/1 * * * *", function () {
               "PINKMAN",
               "GMI",
               "BRUH",
-              "PEPELAND"
+              "PEPELAND",
             ];
             response.data.data.pairs.forEach((element) => {
               if (symbolsToExclude.includes(element.token0.symbol)) {
