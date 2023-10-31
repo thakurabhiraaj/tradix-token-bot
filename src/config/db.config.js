@@ -1,6 +1,7 @@
 const mysql = require("mysql2");
 
 // create the connection to database
+
 const connection = mysql.createConnection({
   host: "localhost",
   user: "tradixdev",
@@ -9,12 +10,22 @@ const connection = mysql.createConnection({
   multipleStatements: true,
   dateStrings: true,
 });
+
 // PORT=9000
 // TELEGRAM_BOT_TOKEN=6100756300:AAFZ5Iu-v0FUfr-hOmz2__W9NU7_vVYb3f0
 // HOST=localhost
 // USER1=tradixdev
 // DATABASE=tradixbot
 // PASSWORD=EvjnCfdn45446aN37rHq
+
+// const connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   database: "tradixbot",
+//   password: "root",
+//   multipleStatements: true,
+//   dateStrings: true,
+// });
 
 
 connection.connect((error) => {
